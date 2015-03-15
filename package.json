@@ -13,7 +13,8 @@
     "nuclear-js": "git+ssh://git@github.com:optimizely/nuclear-js.git#72f4acd0911676810635f1f9943c91e8f7f5d9fa",
     "react": "^0.13.0",
     "lodash": "^3.5.0",
-    "guid": "0.0.12"
+    "guid": "0.0.12",
+    "jquery": "^2.1.3"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
