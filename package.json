@@ -1,0 +1,29 @@
+{
+  "name": "diagram",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "d3": "^3.5.5",
+    "nuclear-js": "git+ssh://git@github.com:optimizely/nuclear-js.git#72f4acd0911676810635f1f9943c91e8f7f5d9fa",
+    "react": "^0.13.0",
+    "lodash": "^3.5.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-connect": "^2.2.0",
+    "webpack": "^1.7.3",
+    "chai": "^2.1.1",
+    "mocha": "^2.2.1",
+    "jsx-loader": "^0.12.2",
+    "babel-core": "^4.7.12",
+    "babel-loader": "^4.2.0",
+    "gulp-shell": "^0.4.0",
+    "del": "^1.1.1"
+  }
+}
