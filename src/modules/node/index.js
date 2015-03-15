@@ -1,15 +1,16 @@
-var flux = require('flux2');
-var getters = require('./getters');
+var flux = require('flux');
 
 // register stores with Flux system
 flux.registerStores({
-  accountInfo: require('./stores/account_info_store'),
+  nodes: require('./stores/node-store'),
 });
 
 module.exports = {
   actions: require('./actions'),
 
+  enums: require('./enums'),
+
   fns: require('./fns'),
 
-  getters: getters,
+  getters: require('./getters'),
 };

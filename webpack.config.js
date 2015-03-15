@@ -1,8 +1,10 @@
 var path = require('path')
+var webpack = require("webpack");
 
 module.exports = {
   entry: {
-    app: './src/main.js',
+    'app/app': './src/app/main.js',
+    'test/test': './src/test/main.js',
   },
 
   output: {
@@ -26,4 +28,10 @@ module.exports = {
       { test: /\.jsx$/, loader: "jsx-loader?insertPragma=React.DOM" },
     ]
   },
+
+  plugins: [
+    new webpack.DefinePlugin({
+      __DEV__: true,
+    }),
+  ]
 };
