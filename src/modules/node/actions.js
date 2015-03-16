@@ -1,5 +1,6 @@
 var flux = require('flux')
 var actionTypes = require('./action-types')
+var fns = require('./fns')
 
 /**
  * Updates a node
@@ -29,9 +30,13 @@ exports.updateNodes = function(nodes) {
  * @param {String} node.body
  * @param {Shape} node.shape
  */
-exports.createNode = function(node) {
+exports.create = function(node) {
+  var node = fns.create(node)
+
   // TODO: invariant for option validation
   flux.dispatch(actionTypes.CREATE_NODE, {
     node: node,
   })
+
+  return node
 }

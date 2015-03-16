@@ -1,20 +1,26 @@
 var expect = require('chai').expect
 var helpers = require('../helpers')
-var Node = require('modules/node')
+var Workspace = require('modules/workspace')
+var CurrentWorkspace = require('modules/current-workspace')
 
 describe("ui tests", () => {
   helpers.setupUITest()
 
   describe("rendering nodes", () => {
-    var node1, node2
     beforeEach(() => {
-      node1 = Node.fns.create({
-        title: 'node #1'
+      var workspace = Workspace.actions.create({
+        name: 'workspace #1'
       })
-      node2 = Node.fns.create({
-        title: 'node #2'
+
+      CurrentWorkspace.actions.setCurrentWorkspaceId(workspace.get('id'))
+
+      CurrentWorkspace.actions.addNode({
+        title: 'node #1',
       })
-      Node.actions.updateNodes([node1, node2])
+
+      CurrentWorkspace.actions.addNode({
+        title: 'node #2',
+      })
     })
 
     it("should render the nodes", () => {

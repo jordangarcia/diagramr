@@ -21,8 +21,8 @@ module.exports = new Nuclear.Store({
  * Creates a new node and stores it
  */
 function updateNode(state, payload) {
-  var id = payload.node.id
-  return state.set(id, toImmutable(payload.node))
+  var id = payload.node.get('id')
+  return state.set(id, payload.node)
 }
 
 /**
@@ -34,7 +34,7 @@ function updateNode(state, payload) {
 function updateNodes(state, payload) {
   return state.withMutations(state => {
     payload.nodes.forEach(node => {
-      state.set(node.id, toImmutable(node))
+      state.set(node.get('id'), node)
     })
   })
 }

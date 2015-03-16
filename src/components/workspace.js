@@ -3,16 +3,17 @@
  */
 var React = require('react')
 var flux = require('flux')
-var Node = require('modules/node')
 
 var NodeComponent = require('components/node')
+
+var CurrentWorkspace = require('modules/current-workspace')
 
 module.exports = React.createClass({
   mixins: [flux.mixin],
 
   getDataBindings() {
     return {
-      nodes: Node.getters.allNodes,
+      nodes: CurrentWorkspace.getters.nodes,
     }
   },
 
@@ -21,6 +22,10 @@ module.exports = React.createClass({
       return <NodeComponent node={node} />
     })
 
-    return <div>{nodes}</div>
+    return (
+      <div>
+        {nodes}
+      </div>
+    )
   },
 })

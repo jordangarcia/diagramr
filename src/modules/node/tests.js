@@ -1,4 +1,6 @@
-var flux = require('flux');
+var flux = require('flux')
+var toImmutable = require('nuclear-js').toImmutable
+var Immutable = require('immutable')
 var expect = require('chai').expect
 var Node = require('./index')
 
@@ -6,24 +8,25 @@ describe("modules/node", () => {
   afterEach(() => flux.reset())
 
   describe("actions", () => {
-    it("#createNode", () => {
-      var node = Node.fns.create({
+    it("#create", () => {
+      var node = Node.actions.create({
+        workspace_id: 'abc',
         position: [1, 1],
         title: 'title',
         body: 'body',
       })
-      Node.actions.createNode(node)
 
-      var result = flux.evaluateToJS(Node.getters.byId(node.id))
-      var expected = {
-        id: node.id,
+      var result = flux.evaluate(Node.getters.byId(node.get('id')))
+      var expected = toImmutable({
+        id: node.get('id'),
+        workspace_id: 'abc',
         position: [1, 1],
         title: 'title',
         body: 'body',
         shape: Node.enums.shape.RECT,
-      }
+      })
 
-      expect(result).to.eql(expected)
+      expect(Immutable.is(result, expected)).to.be.true
     })
 
     describe("#updateNodes", () => {
@@ -36,8 +39,8 @@ describe("modules/node", () => {
         })
         Node.actions.updateNodes([node1, node2]);
 
-        var node1Result = flux.evaluateToJS(Node.getters.byId(node1.id))
-        var node2Result = flux.evaluateToJS(Node.getters.byId(node2.id))
+        var node1Result = flux.evaluateToJS(Node.getters.byId(node1.get('id')))
+        var node2Result = flux.evaluateToJS(Node.getters.byId(node2.get('id')))
         expect(node1Result.title).to.equal('node #1')
         expect(node2Result.title).to.equal('node #2')
       })
